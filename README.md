@@ -1,11 +1,11 @@
 
 # MXene Formation Energy Prediction via Machine Learning
 
-A machine-learning study predicting the formation energy of MxCTx MXenes (M = transition metal, T = termination) from composition-only descriptors, using a 275-entry DFT dataset for training and original Quantum ESPRESSO calculations as independent validation — including a deliberate out-of-training-distribution test case.
+A machine-learning study predicting the formation energy of M_n+1X_nT_x MXenes (M = transition metal, X = Carbon or Nitrogen, T = termination) from composition-only descriptors, using a 275-entry DFT dataset for training and original Quantum ESPRESSO calculations as independent validation — including a deliberate out-of-training-distribution test case.
 
 ## Motivation
 
-High-throughput MXene screening is typically bottlenecked by the cost of running DFT on every candidate composition. This project asks a narrower, feasibility-scoped question: starting from an existing DFT dataset of 275 M₂CT₂ MXenes, can a composition-only ML model predict formation energy well enough to be useful for pre-screening, and — critically — does that model actually generalize to compositions it has never seen, rather than just interpolating within the training set?
+High-throughput MXene screening is typically bottlenecked by the cost of running DFT on every candidate composition. This project asks a narrower, feasibility-scoped question: starting from an existing DFT dataset of 275 M_n+1X_nT_x MXenes, can a composition-only ML model predict formation energy well enough to be useful for pre-screening, and — critically — does that model actually generalize to compositions it has never seen, rather than just interpolating within the training set?
 
 This project was deliberately scoped to stay tractable on local CPU-only hardware: no new DFT dataset was generated, and only a small number of validation structures (≤10 atoms per cell) were computed directly.
 
@@ -13,7 +13,7 @@ This project was deliberately scoped to stay tractable on local CPU-only hardwar
 
 1. How well can composition-only (Magpie) descriptors predict MXene formation energy, and is 275 data points enough for the learning curve to plateau?
 2. Which descriptors dominate the prediction, and are they consistent with known MXene chemistry?
-3. Does a model trained only on single-metal (M₂CT₂) MXenes generalize to out-of-distribution compositions it has never seen — including compositions that break the single-metal assumption entirely?
+3. Does a model trained only on single-metal (M_n+1X_nT_x) MXenes generalize to out-of-distribution compositions it has never seen — including compositions that break the single-metal assumption entirely?
 
 ## Data
 
@@ -33,7 +33,7 @@ This project was deliberately scoped to stay tractable on local CPU-only hardwar
 
 **Validation design — two tiers:**
 - *In-dataset / cross-code consistency check:* QE formation energies for two compositions (Ti₂C(OH)₂, Zr₂C(OH)₂) that **are** present in the training set, checking whether an independent DFT code/pseudopotential/functional setup agrees with the source dataset.
-- *Out-of-distribution generalization check:* QE formation energy for **Mo₂TiC₂**, a composition **absent from the training set** and structurally different from it (two distinct metal species in one formula unit, rather than the single-metal M₂CT₂ pattern the model was trained on).
+- *Out-of-distribution generalization check:* QE formation energy for **Mo₂TiC₂**, a composition **absent from the training set** and structurally different from it (two distinct metal species in one formula unit, rather than the single-metal M_n+1X_nT_x pattern the model was trained on).
 
 **DFT reference energies:** Formation energy computed as
 `E_form = [E_total(MXene) − Σ(nᵢ·μᵢ)] / N_atom`,
@@ -67,11 +67,11 @@ Electronegativity-related Magpie descriptors (`MagpieData range Electronegativit
 
 **Q2 — Which descriptors dominate?** Termination electronegativity statistics dominate feature importance, matching expected MXene chemistry — a useful sanity check that the model is learning physically sensible relationships rather than spurious correlations.
 
-**Q3 — Does the model generalize out-of-distribution?** No, not reliably. The two in-dataset validation points (Ti₂C(OH)₂, Zr₂C(OH)₂) show small, consistent errors (~0.11–0.17 eV/atom) attributable to differences in DFT setup (code, pseudopotentials, functional) between this work and the source dataset. The out-of-distribution case, Mo₂TiC₂, shows a much larger error (0.62 eV/atom) and — more seriously — the **wrong sign**: the model predicts a thermodynamically unfavorable (positive) formation energy for a structure DFT shows to be stable. This is strong evidence that a model trained exclusively on single-metal M₂CT₂ MXenes does not reliably extrapolate to bimetallic/ordered double-M compositions, which are structurally outside its training distribution.
+**Q3 — Does the model generalize out-of-distribution?** No, not reliably. The two in-dataset validation points (Ti₂C(OH)₂, Zr₂C(OH)₂) show small, consistent errors (~0.11–0.17 eV/atom) attributable to differences in DFT setup (code, pseudopotentials, functional) between this work and the source dataset. The out-of-distribution case, Mo₂TiC₂, shows a much larger error (0.62 eV/atom) and — more seriously — the **wrong sign**: the model predicts a thermodynamically unfavorable (positive) formation energy for a structure DFT shows to be stable. This is strong evidence that a model trained exclusively on single-metal M_n+1X_nT_x MXenes does not reliably extrapolate to bimetallic/ordered double-M compositions, which are structurally outside its training distribution.
 
 ## Limitations
 
-- Training data limited to 275 single-metal MxCTx MXenes; no bimetallic/double-M structures were present in training, which directly explains the Q3 failure case above.
+- Training data limited to 275 single-metal M_n+1X_nT_x MXenes; no bimetallic/double-M structures were present in training, which directly explains the Q3 failure case above.
 - Learning curve does not plateau at the current dataset size — reported model metrics should be read as a feasibility result, not a converged final model.
 - Only two in-dataset and one out-of-distribution structure were validated against original DFT; this is sufficient to demonstrate a generalization failure mode, not to comprehensively characterize model accuracy.
 - DFT validation was run with Quantum ESPRESSO, while the source dataset (`mxene275` / JARVIS) uses a different code and functional setup (OptB88-vdW); the ~0.1–0.2 eV/atom in-dataset discrepancy reflects this methodological difference, not necessarily model error.
