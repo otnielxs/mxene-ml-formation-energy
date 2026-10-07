@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="figure/mxene.png" width="600">
+  <img src="figure/mxenes.png" width="600">
 </p>
 # MXene Formation Energy Prediction via Machine Learning
 
