@@ -1,0 +1,49 @@
+&CONTROL
+  calculation = 'vc-relax' ! using vc because its new material
+  prefix = 'mo2tic2'
+  outdir = './tmp'
+  pseudo_dir = '../' ! your directory
+  nstep = 250
+/
+
+&SYSTEM
+  ibrav = 0
+  nat = 5
+  ntyp = 3
+  ecutwfc = 60
+  ecutrho = 480
+  occupations = 'smearing'
+  smearing = 'mv'
+  degauss = 0.02
+/
+
+&ELECTRONS
+  conv_thr = 1.0d-8
+/
+
+&IONS
+/
+
+&CELL
+  cell_dofree = '2Dxy' ! vaccum in z-axis
+/
+
+CELL_PARAMETERS angstrom
+  3.03214   0.00000   0.00000
+ -1.51607   2.62591   0.00000
+  0.00000   0.00000  20.42568
+
+ATOMIC_SPECIES
+ Mo 95.95  Mo.pbe-spn-kjpaw_psl.1.0.0.UPF
+ Ti 47.867 Ti.pbe-spn-kjpaw_psl.1.0.0.UPF
+ C  12.011 C.pbe-n-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS angstrom
+Mo   0.00000   1.75060   2.40391
+Mo   1.51607   0.87530   5.02178
+Ti   0.00000   0.00000   3.71284
+ C   0.00000   1.75060   5.93274
+ C   1.51607   0.87530   1.49294
+
+K_POINTS automatic
+ 12 12 1 0 0 0

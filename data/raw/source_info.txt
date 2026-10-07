@@ -1,0 +1,5 @@
+Dataset: JARVIS MXene275
+Source: JARVIS-DFT Database (NIST)
+DOI: 10.18434/M3XW59
+Link: https://jarvis.nist.gov
+Description: Dataset containing 275 MXene entries with various compositions and terminations, including formation energies, POSCAR structures, and related properties.

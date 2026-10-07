@@ -1,0 +1,14 @@
+name: mxene-ml
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - joblib
+  - pip
+  - pip:
+    - jarvis-tools
+    - matminer
+    - pymatgen

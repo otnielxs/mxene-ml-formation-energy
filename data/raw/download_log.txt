@@ -1,0 +1,5 @@
+Download date: 2026-09-28
+Method: jarvis-tools (Python API)
+Command: from jarvis.db.figshare import data; data("mxene275")
+Environment: conda env mxene-ml (Python 3.11, WSL2)
+Notes: Dataset was downloaded directly from JARVIS Figshare, no manual modifications applied.

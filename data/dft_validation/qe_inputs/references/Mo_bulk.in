@@ -1,0 +1,40 @@
+&CONTROL
+  calculation = 'relax'
+  prefix = 'mo'
+  outdir = './tmp/'
+  pseudo_dir = '../' ! your directory
+/
+
+&SYSTEM
+  ibrav = 0
+  nat = 2
+  ntyp = 1
+  ecutwfc = 60
+  ecutrho = 480
+  occupations = 'smearing'
+  smearing = 'mv'
+  degauss = 0.02
+/
+
+&ELECTRONS
+  conv_thr = 1.0d-8
+  mixing_beta = 0.3
+  electron_maxstep = 200
+/
+&IONS
+/
+
+CELL_PARAMETERS angstrom
+  3.16762   0.00000   0.00000
+  0.00000   3.16762   0.00000
+  0.00000   0.00000  17.16762
+
+ATOMIC_SPECIES
+  Mo 95.95 Mo.pbe-spn-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS angstrom
+  Mo  0.00000  0.00000  0.00000
+  Mo  1.58381  1.58381  1.58381
+
+K_POINTS automatic
+ 12 12 12 0 0 0
