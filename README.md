@@ -21,7 +21,7 @@ This project was deliberately scoped to stay tractable on local CPU-only hardwar
 | Item | Detail |
 |---|---|
 | Source | JARVIS-DFT `mxene275` dataset (NIST) |
-| Size | 275 MxCTx monolayer MXenes |
+| Size | 275 M_n+1X_nT_x monolayer MXenes |
 | Target | Formation energy (eV/atom), as provided by the source dataset |
 | Features | Composition-only: Magpie elemental-property statistics (`matminer.ElementProperty`, preset `magpie`) derived from parsed formula |
 | Note | Work function was the originally intended target; it is not available in `mxene275`, so the project scope shifted to formation energy during data audit (see `notebooks/01_data_audit.ipynb`) |
