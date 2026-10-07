@@ -1,7 +1,7 @@
 
 # MXene Formation Energy Prediction via Machine Learning
 
-A machine-learning study predicting the formation energy of M₂CT₂ MXenes (M = transition metal, T = termination) from composition-only descriptors, using a 275-entry DFT dataset for training and original Quantum ESPRESSO calculations as independent validation — including a deliberate out-of-training-distribution test case.
+A machine-learning study predicting the formation energy of MxCTx MXenes (M = transition metal, T = termination) from composition-only descriptors, using a 275-entry DFT dataset for training and original Quantum ESPRESSO calculations as independent validation — including a deliberate out-of-training-distribution test case.
 
 ## Motivation
 
