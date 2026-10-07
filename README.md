@@ -20,7 +20,7 @@ This project was deliberately scoped to stay tractable on local CPU-only hardwar
 | Item | Detail |
 |---|---|
 | Source | JARVIS-DFT `mxene275` dataset (NIST) |
-| Size | 275 M₂CT₂ monolayer MXenes |
+| Size | 275 MxCTx monolayer MXenes |
 | Target | Formation energy (eV/atom), as provided by the source dataset |
 | Features | Composition-only: Magpie elemental-property statistics (`matminer.ElementProperty`, preset `magpie`) derived from parsed formula |
 | Note | Work function was the originally intended target; it is not available in `mxene275`, so the project scope shifted to formation energy during data audit (see `notebooks/01_data_audit.ipynb`) |
@@ -71,12 +71,12 @@ Electronegativity-related Magpie descriptors (`MagpieData range Electronegativit
 
 ## Limitations
 
-- Training data limited to 275 single-metal M₂CT₂ MXenes; no bimetallic/double-M structures were present in training, which directly explains the Q3 failure case above.
+- Training data limited to 275 single-metal MxCTx MXenes; no bimetallic/double-M structures were present in training, which directly explains the Q3 failure case above.
 - Learning curve does not plateau at the current dataset size — reported model metrics should be read as a feasibility result, not a converged final model.
 - Only two in-dataset and one out-of-distribution structure were validated against original DFT; this is sufficient to demonstrate a generalization failure mode, not to comprehensively characterize model accuracy.
 - DFT validation was run with Quantum ESPRESSO, while the source dataset (`mxene275` / JARVIS) uses a different code and functional setup (OptB88-vdW); the ~0.1–0.2 eV/atom in-dataset discrepancy reflects this methodological difference, not necessarily model error.
 - O and H reference chemical potentials were taken from molecular (O₂, H₂) phases; bulk-phase references were computed but not used as the primary reference — this choice is a known source of sensitivity in formation-energy definitions and is not exhaustively stress-tested here.
-- All DFT validation structures were kept small (≤10 atoms/cell) to remain tractable on local CPU-only hardware; no GPU-accelerated QE build was available.
+- All DFT validation structures were kept small (≤10 atoms/cell) to remain tractable on local CPU-only hardware
 - With only one out-of-distribution test point, the magnitude of the generalization error (0.62 eV/atom) should be read as a single data point illustrating a failure mode, not a statistically robust error estimate.
 
 ## Repository Structure
