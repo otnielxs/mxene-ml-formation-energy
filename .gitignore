@@ -3,12 +3,6 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 
-# QE output besar — JANGAN commit
-*.save/
-*.wfc*
-*.mix*
-*.igk*
-*.hub
 
 # OS
 .DS_Store
