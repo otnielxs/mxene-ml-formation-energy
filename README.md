@@ -1,7 +1,6 @@
 <p align="center">
   <img src="figure/mxenes.png" width="600">
 </p>
-# MXene Formation Energy Prediction via Machine Learning
 
 A machine-learning study predicting the formation energy of M_n+1X_nT_x MXenes (M = transition metal, X = Carbon or Nitrogen, T = termination) from composition-only descriptors, using a 275-entry DFT dataset for training and original Quantum ESPRESSO calculations as independent validation — including a deliberate out-of-training-distribution test case.
 
